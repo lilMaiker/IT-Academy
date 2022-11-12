@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Project_one.Models
 {
-    internal class NewItem
+    public class NewItem
     {
         public string Name { get; set; }    
     }
