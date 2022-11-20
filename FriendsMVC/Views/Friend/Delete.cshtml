@@ -1,0 +1,33 @@
+﻿@model FriendsMVC.Models.Friend
+
+@{
+    ViewData["Title"] = "Удаление друга из списка";
+}
+
+<h1>Удаление</h1>
+
+<h3>Вы уверены, что хотите удалить друга?</h3>
+<div>
+    <h4>Друг, @Html.DisplayFor(model => model.FriendName)</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.FriendName)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.FriendName)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Place)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Place)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="FriendID" />
+        <input type="submit" value="Удалить" class="btn btn-danger" /> 
+        <a asp-action="Index" class="btn btn-info"><i class="fa-solid fa-rotate-left"></i>Вернуться к списку</a>
+    </form>
+</div>

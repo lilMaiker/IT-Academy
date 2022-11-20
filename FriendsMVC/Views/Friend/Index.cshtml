@@ -1,0 +1,45 @@
+﻿@model IEnumerable<FriendsMVC.Models.Friend>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+
+<p>
+    <a asp-action="Create" class="btn btn-sm btn-success"><i class="fa-solid fa-plus"></i> Добавить</a>
+</p>
+
+
+<div class="content">
+    <div class="container">
+      <h2 class="mb-5">Список друзей</h2>
+      <div class="table-responsive custom-table-responsive">
+        <table class="table custom-table">
+          <thead>
+            <tr>  
+               <th scope="col">@Html.DisplayNameFor(model => model.FriendName)</th>
+            <th scope="col">@Html.DisplayNameFor(model => model.Place)</th>
+            <th>Действия</th>
+            </tr>
+          </thead>
+            <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@Html.DisplayFor(modelItem => item.FriendName)</td>
+                            <td> @Html.DisplayFor(modelItem => item.Place)</td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.FriendID" class="btn btn-warning"><i class="fa-solid fa-pen-to-square"></i> Изменить </a> 
+                        <a asp-action="Details" asp-route-id="@item.FriendID" class="btn btn-info"><i class="fa-solid fa-circle-info"></i> Детали</a> 
+                        <a asp-action="Delete" asp-route-id="@item.FriendID" class="btn btn-danger"><i class="fa-solid fa-trash"></i> Удалить</a>
+                    </td>
+                        </tr>
+                            <tr class="spacer"><td colspan="100"></td></tr>
+                    }
+           </tbody>
+        </table>
+      </div>
+    </div>
+</div>
+</table>
