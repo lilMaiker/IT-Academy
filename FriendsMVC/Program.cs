@@ -1,7 +1,6 @@
 
 
-using FriendsMVC.Models;
-
+using FriendsMVC.DataAccess;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);

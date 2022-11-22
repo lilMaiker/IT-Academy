@@ -1,6 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using FriendsMVC.DataAccess.Models;
+using Microsoft.EntityFrameworkCore;
 
-namespace FriendsMVC.Models
+namespace FriendsMVC.DataAccess
 {
     public class FriendDbContext : DbContext
     {

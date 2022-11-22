@@ -5,7 +5,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using FriendsMVC.Models;
+using FriendsMVC.DataAccess;
+using FriendsMVC.DataAccess.Models;
 
 namespace FriendsMVC.Controllers
 {
