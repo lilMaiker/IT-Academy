@@ -7,22 +7,26 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using FriendsMVC.DataAccess;
 using FriendsMVC.DataAccess.Models;
+using FriendsMVC.Buisness.Services;
+using FriendsMVC.Buisness.Contract.Interfaces;
 
 namespace FriendsMVC.Controllers
 {
     public class FriendController : Controller
     {
         private readonly FriendDbContext _context;
+        private IFriendService _ifriendService;
 
-        public FriendController(FriendDbContext context)
+        public FriendController(FriendDbContext context, IFriendService friendService)
         {
             _context = context;
+            _ifriendService = friendService;
         }
 
         // GET: Friend
         public async Task<IActionResult> Index()
         {
-              return View(await _context.Friends.ToListAsync());
+              return View(await _ifriendService.GetFriends());
         }
 
         // GET: Friend/Details/5
