@@ -1,8 +1,7 @@
-
-
 using FriendsMVC.Buisness.Contract.Interfaces;
 using FriendsMVC.Buisness.Services;
 using FriendsMVC.DataAccess;
+
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -11,7 +10,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 
 //DI for dbcontext
-builder.Services.AddDbContext<FriendDbContext>(options => options.UseMySql(builder.Configuration.GetConnectionString("DefaultConnectionMySQL"), 
+builder.Services.AddDbContext<FriendDbContext>(options => options.UseMySql(builder.Configuration.GetConnectionString("DefaultConnectionMySQL"),
     ServerVersion.AutoDetect(builder.Configuration.GetConnectionString("DefaultConnectionMySQL"))).LogTo(Console.WriteLine, LogLevel.Information)
                 .EnableSensitiveDataLogging()
                 .EnableDetailedErrors());
@@ -33,7 +32,7 @@ if (!app.Environment.IsDevelopment())
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
-  
+
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();

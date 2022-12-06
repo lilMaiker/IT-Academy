@@ -3,6 +3,6 @@
     public interface IFriendService
     {
         public Task<List<DataAccess.Models.Friend>> GetFriends();
-        
+
     }
 }

@@ -1,4 +1,5 @@
 ﻿using FriendsMVC.DataAccess.Models;
+
 using Microsoft.EntityFrameworkCore;
 
 namespace FriendsMVC.DataAccess

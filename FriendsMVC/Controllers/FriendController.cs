@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
+﻿using FriendsMVC.Buisness.Contract.Interfaces;
 using FriendsMVC.DataAccess;
 using FriendsMVC.DataAccess.Models;
-using FriendsMVC.Buisness.Services;
-using FriendsMVC.Buisness.Contract.Interfaces;
+
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace FriendsMVC.Controllers
 {
@@ -26,7 +21,7 @@ namespace FriendsMVC.Controllers
         // GET: Friend
         public async Task<IActionResult> Index()
         {
-              return View(await _ifriendService.GetFriends());
+            return View(await _ifriendService.GetFriends());
         }
 
         // GET: Friend/Details/5
@@ -60,13 +55,10 @@ namespace FriendsMVC.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("FriendID,FriendName,Place")] Friend friend)
         {
-            if (ModelState.IsValid)
-            {
-                _context.Add(friend);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            return View(friend);
+            if (!ModelState.IsValid) return BadRequest();
+            _context.Add(friend);
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
         }
 
         // GET: Friend/Edit/5
@@ -97,27 +89,21 @@ namespace FriendsMVC.Controllers
                 return NotFound();
             }
 
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid) return BadRequest();
+
+            try
             {
-                try
-                {
-                    _context.Update(friend);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!FriendExists(friend.FriendID))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
+                _context.Update(friend);
+                await _context.SaveChangesAsync();
             }
-            return View(friend);
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!FriendExists(friend.FriendID))
+                    return NotFound();
+                else
+                    throw;
+            }
+            return RedirectToAction(nameof(Index));
         }
 
         // GET: Friend/Delete/5
@@ -152,14 +138,14 @@ namespace FriendsMVC.Controllers
             {
                 _context.Friends.Remove(friend);
             }
-            
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool FriendExists(int id)
         {
-          return _context.Friends.Any(e => e.FriendID == id);
+            return _context.Friends.Any(e => e.FriendID == id);
         }
     }
 }
