@@ -8,15 +8,37 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace FriendsMVC.Migrations
 {
-    [DbContext(typeof(FriendDbContext))]
-    partial class FriendDbContextModelSnapshot : ModelSnapshot
+    [DbContext(typeof(ApplicationDbContext))]
+    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "6.0.7")
+                .HasAnnotation("ProductVersion", "6.0.12")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
+
+            modelBuilder.Entity("FriendsMVC.DataAccess.Models.Country", b =>
+                {
+                    b.Property<int>("CountryID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<string>("CityForCountry")
+                        .HasColumnType("VARCHAR(45)");
+
+                    b.Property<string>("CountryName")
+                        .IsRequired()
+                        .HasColumnType("VARCHAR(45)");
+
+                    b.Property<string>("Population")
+                        .IsRequired()
+                        .HasColumnType("VARCHAR(45)");
+
+                    b.HasKey("CountryID");
+
+                    b.ToTable("Countries");
+                });
 
             modelBuilder.Entity("FriendsMVC.DataAccess.Models.Friend", b =>
                 {

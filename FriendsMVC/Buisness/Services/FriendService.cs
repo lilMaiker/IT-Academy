@@ -7,8 +7,8 @@ namespace FriendsMVC.Buisness.Services
 {
     public class FriendService : IFriendService
     {
-        private FriendDbContext _dbContext;
-        public FriendService(FriendDbContext context)
+        private ApplicationDbContext _dbContext;
+        public FriendService(ApplicationDbContext context)
         {
             _dbContext = context;
         }

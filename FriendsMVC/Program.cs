@@ -1,6 +1,8 @@
+using FriendsMVC;
 using FriendsMVC.Buisness.Contract.Interfaces;
 using FriendsMVC.Buisness.Services;
 using FriendsMVC.DataAccess;
+using FriendsMVC.Logging;
 
 using Microsoft.EntityFrameworkCore;
 
@@ -10,7 +12,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 
 //DI for dbcontext
-builder.Services.AddDbContext<FriendDbContext>(options => options.UseMySql(builder.Configuration.GetConnectionString("DefaultConnectionMySQL"),
+builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseMySql(builder.Configuration.GetConnectionString("DefaultConnectionMySQL"),
     ServerVersion.AutoDetect(builder.Configuration.GetConnectionString("DefaultConnectionMySQL"))).LogTo(Console.WriteLine, LogLevel.Information)
                 .EnableSensitiveDataLogging()
                 .EnableDetailedErrors());
@@ -20,10 +22,14 @@ builder.Services.AddDbContext<FriendDbContext>(options => options.UseMySql(build
 //if development
 #if DEBUG
 builder.Services.AddScoped<IFriendService, FriendService>();
+builder.Services.AddScoped<ICountryService, CountryService>();
 #endif
+
+SerilogConfigurator.ConfigureSerilog(builder, LogLevel.Warning, "log.txt");
 
 var app = builder.Build();
 
+//StartUp.MigrateDB(app.Services);
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
@@ -46,3 +52,5 @@ app.MapControllerRoute(
     pattern: "{controller=Friend}/{action=Index}/{id?}");
 
 app.Run();
+
+

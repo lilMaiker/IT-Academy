@@ -5,11 +5,30 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace FriendsMVC.Migrations
 {
-    public partial class InitialCreate : Migration
+    public partial class newtable : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.AlterDatabase()
+                .Annotation("MySql:CharSet", "utf8mb4");
+
+            migrationBuilder.CreateTable(
+                name: "Countries",
+                columns: table => new
+                {
+                    CountryID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    CountryName = table.Column<string>(type: "VARCHAR(45)", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    CityForCountry = table.Column<string>(type: "VARCHAR(45)", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    Population = table.Column<string>(type: "VARCHAR(45)", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4")
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Countries", x => x.CountryID);
+                })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
@@ -32,6 +51,9 @@ namespace FriendsMVC.Migrations
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "Countries");
+
             migrationBuilder.DropTable(
                 name: "Friends");
         }

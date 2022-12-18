@@ -6,11 +6,11 @@
     ViewData["Title"] = "Index";
 }
 
-
-
-<p>
-    <a asp-action="Create" class="btn btn-sm btn-success"><i class="fa-solid fa-plus"></i> Добавить</a>
+<p> 
+    <a asp-action="Create" class="btn btn-sm btn-success"><i class="fa-solid fa-plus"></i> Добавить</a> 
 </p>
+
+
 
 
 <div class="content">
@@ -24,7 +24,7 @@
             <th scope="col">@Html.DisplayNameFor(model => model.Place)</th>
             <th>Действия</th>
             </tr>
-          </thead>
+             </thead>
             <tbody>
                     @foreach (var item in Model)
                     {

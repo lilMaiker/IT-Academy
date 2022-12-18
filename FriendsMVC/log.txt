@@ -1,0 +1,3 @@
+13:28 [l:Warning] (th:) Message: Sensitive data logging is enabled. Log entries and exception messages may include sensitive application data; this mode should only be enabled during development.
+Esception: 13:31 [l:Warning] (th:) Message: Sensitive data logging is enabled. Log entries and exception messages may include sensitive application data; this mode should only be enabled during development.
+Esception: 

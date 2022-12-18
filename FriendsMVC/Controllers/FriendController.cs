@@ -9,10 +9,10 @@ namespace FriendsMVC.Controllers
 {
     public class FriendController : Controller
     {
-        private readonly FriendDbContext _context;
+        private readonly ApplicationDbContext _context;
         private IFriendService _ifriendService;
 
-        public FriendController(FriendDbContext context, IFriendService friendService)
+        public FriendController(ApplicationDbContext context, IFriendService friendService)
         {
             _context = context;
             _ifriendService = friendService;
@@ -28,16 +28,13 @@ namespace FriendsMVC.Controllers
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null || _context.Friends == null)
-            {
                 return NotFound();
-            }
 
             var friend = await _context.Friends
                 .FirstOrDefaultAsync(m => m.FriendID == id);
+
             if (friend == null)
-            {
                 return NotFound();
-            }
 
             return View(friend);
         }
@@ -65,16 +62,11 @@ namespace FriendsMVC.Controllers
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null || _context.Friends == null)
-            {
                 return NotFound();
-            }
 
             var friend = await _context.Friends.FindAsync(id);
-            if (friend == null)
-            {
-                return NotFound();
-            }
-            return View(friend);
+
+            return friend == null ? NotFound() : View(friend);
         }
 
         // POST: Friend/Edit/5
@@ -85,9 +77,7 @@ namespace FriendsMVC.Controllers
         public async Task<IActionResult> Edit(int id, [Bind("FriendID,FriendName,Place")] Friend friend)
         {
             if (id != friend.FriendID)
-            {
                 return NotFound();
-            }
 
             if (!ModelState.IsValid) return BadRequest();
 
@@ -103,6 +93,7 @@ namespace FriendsMVC.Controllers
                 else
                     throw;
             }
+
             return RedirectToAction(nameof(Index));
         }
 
@@ -110,16 +101,13 @@ namespace FriendsMVC.Controllers
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null || _context.Friends == null)
-            {
                 return NotFound();
-            }
 
             var friend = await _context.Friends
                 .FirstOrDefaultAsync(m => m.FriendID == id);
+
             if (friend == null)
-            {
                 return NotFound();
-            }
 
             return View(friend);
         }
@@ -130,16 +118,15 @@ namespace FriendsMVC.Controllers
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             if (_context.Friends == null)
-            {
                 return Problem("Entity set 'FriendDbContext.Friends'  is null.");
-            }
+
             var friend = await _context.Friends.FindAsync(id);
+
             if (friend != null)
-            {
                 _context.Friends.Remove(friend);
-            }
 
             await _context.SaveChangesAsync();
+
             return RedirectToAction(nameof(Index));
         }
 

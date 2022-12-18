@@ -1,0 +1,45 @@
+﻿@model IEnumerable<FriendsMVC.DataAccess.Models.Country>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Страны</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-sm btn-success"><i class="fa-solid fa-plus"></i>Добавить новые данные</a>
+</p>
+
+
+<div class="content">
+    <div class="container">
+      <h2 class="mb-5">Фильтр по странам</h2>
+      <div class="table-responsive custom-table-responsive">
+        <table class="table custom-table">
+          <thead>
+            <tr>  
+               <th scope="col">@Html.DisplayNameFor(model => model.CountryName)</th>
+            <th scope="col">@Html.DisplayNameFor(model => model.CityForCountry)</th>
+            <th scope="col">@Html.DisplayNameFor(model => model.Population)</th>
+            </tr>
+             </thead>
+            <tbody>
+                    @foreach (var item in Model)
+                    {
+                                <tr>
+                                        <td>@Html.DisplayFor(modelItem => item.CountryName)</td>
+                                        <td> @Html.DisplayFor(modelItem => item.CityForCountry)</td>
+                                            <td> @Html.DisplayFor(modelItem => item.Population)</td>
+                                                <td>
+                                                              <a asp-action="Edit" asp-route-id="@item.CountryID" class="btn btn-warning"><i class="fa-solid fa-pen-to-square"></i> Изменить </a> 
+                                <a asp-action="Details" asp-route-id="@item.CountryID" class="btn btn-info"><i class="fa-solid fa-circle-info"></i> Детали</a> 
+                                <a asp-action="Delete" asp-route-id="@item.CountryID" class="btn btn-danger"><i class="fa-solid fa-trash"></i> Удалить</a>
+                </td>
+                                </tr>
+                                    <tr class="spacer"><td colspan="100"></td></tr>
+                    }
+           </tbody>
+        </table>
+      </div>
+    </div>
+</div>
