@@ -23,7 +23,7 @@ namespace FriendsMVC.Controllers
         }
 
         // GET: Country/Italy/Rome/Venice
-        [HttpGet("{controller}/{country}/{*cities}")]
+        [HttpGet("сountry/{country}/{*cities}")]
         public async Task<IActionResult> GetPopulation(string country, string cities)
         {
             if (_context == null || _countryService == null) return NotFound();
