@@ -1,4 +1,3 @@
-using FriendsMVC;
 using FriendsMVC.Buisness.Contract.Interfaces;
 using FriendsMVC.Buisness.Services;
 using FriendsMVC.DataAccess;

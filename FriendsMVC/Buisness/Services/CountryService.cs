@@ -3,8 +3,6 @@ using FriendsMVC.DataAccess;
 
 using Microsoft.EntityFrameworkCore;
 
-using System.Linq;
-
 namespace FriendsMVC.Buisness.Services
 {
     public class CountryService : ICountryService

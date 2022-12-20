@@ -2,10 +2,7 @@
 
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Text.Json;
-using System.Threading.Tasks;
 
 namespace Project_one
 {
@@ -14,7 +11,7 @@ namespace Project_one
         public static List<Models.WeatherForecast> ListWeather = new List<WeatherForecast>();
 
         static void Main(string[] args)
-        {   
+        {
             var weatherForecast = new WeatherForecast
             {
                 Date = DateTime.Parse("2019-08-01"),
@@ -32,7 +29,7 @@ namespace Project_one
             //TASK 4
 
             Weather weather1 = new ItalianWeather();
-            weather1 = new WeatherSouth(weather1); 
+            weather1 = new WeatherSouth(weather1);
             Console.WriteLine("Название: {0}", weather1.Name);
             Console.WriteLine("Температура: {0}", weather1.GetTempNow());
 
@@ -62,7 +59,7 @@ namespace Project_one
             if (pSummary is null)
                 throw new ArgumentNullException(nameof(pSummary));
 
-            pList.Add(new WeatherForecast() { Weekday = pWeekday, Date = pDate, Summary = pSummary, TemperatureCelsius = pTemperatureCelsius }) ;
+            pList.Add(new WeatherForecast() { Weekday = pWeekday, Date = pDate, Summary = pSummary, TemperatureCelsius = pTemperatureCelsius });
         }
 
         /// <summary>
@@ -137,5 +134,5 @@ namespace Project_one
         }
     }
 
-   
+
 }

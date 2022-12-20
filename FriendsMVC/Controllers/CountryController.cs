@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
+﻿using FriendsMVC.Buisness.Contract.Interfaces;
 using FriendsMVC.DataAccess;
 using FriendsMVC.DataAccess.Models;
-using FriendsMVC.Buisness.Contract.Interfaces;
+
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace FriendsMVC.Controllers
 {
@@ -26,8 +22,6 @@ namespace FriendsMVC.Controllers
         [HttpGet("сountry/{country}/{*cities}")]
         public async Task<IActionResult> GetPopulation(string country, string cities)
         {
-            if (_context == null || _countryService == null) return NotFound();
-
             if (country is not null && cities is not null)
             {
                 string[] cityArray = cities.Split('/');
@@ -42,7 +36,7 @@ namespace FriendsMVC.Controllers
         // GET: Country
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Countries.ToListAsync());
+            return View(await _countryService.GetCountries());
         }
 
         // GET: Country/Details/5

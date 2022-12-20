@@ -1,11 +1,5 @@
 ﻿using Project_one.Models;
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 namespace Project_one.Helpers
 {
     public class Weather
