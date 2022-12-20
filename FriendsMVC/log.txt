@@ -6,4 +6,6 @@ Esception: 13:50 [l:Warning] (th:) Message: Sensitive data logging is enabled. L
 Esception: 13:51 [l:Warning] (th:) Message: Sensitive data logging is enabled. Log entries and exception messages may include sensitive application data; this mode should only be enabled during development.
 Esception: 13:52 [l:Warning] (th:) Message: Sensitive data logging is enabled. Log entries and exception messages may include sensitive application data; this mode should only be enabled during development.
 Esception: 20:02 [l:Warning] (th:) Message: Sensitive data logging is enabled. Log entries and exception messages may include sensitive application data; this mode should only be enabled during development.
+Esception: 20:07 [l:Warning] (th:) Message: Sensitive data logging is enabled. Log entries and exception messages may include sensitive application data; this mode should only be enabled during development.
+Esception: 20:23 [l:Warning] (th:) Message: Sensitive data logging is enabled. Log entries and exception messages may include sensitive application data; this mode should only be enabled during development.
 Esception: 

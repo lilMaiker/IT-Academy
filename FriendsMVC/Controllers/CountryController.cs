@@ -9,12 +9,10 @@ namespace FriendsMVC.Controllers
 {
     public class CountryController : Controller
     {
-        private readonly ApplicationDbContext _context;
         private ICountryService _countryService;
 
-        public CountryController(ApplicationDbContext context, ICountryService countryService)
+        public CountryController(ICountryService countryService)
         {
-            _context = context;
             _countryService = countryService;
         }
 
@@ -42,10 +40,10 @@ namespace FriendsMVC.Controllers
         // GET: Country/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null || _context.Countries == null)
+            if (id == null || _countryService.Countries == null)
                 return NotFound();
 
-            var country = await _context.Countries
+            var country = await _countryService.Countries()
                 .FirstOrDefaultAsync(m => m.CountryID == id);
 
             if (country == null)
@@ -69,18 +67,18 @@ namespace FriendsMVC.Controllers
         {
             if (!ModelState.IsValid) return BadRequest(ModelState);
 
-            _context.Add(country);
-            await _context.SaveChangesAsync();
+            _countryService.AddNewCountry(country);
+            await _countryService.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         // GET: Country/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null || _context.Countries == null)
+            if (id == null || _countryService.Countries == null)
                 return NotFound();
 
-            var country = await _context.Countries.FindAsync(id);
+            var country = await _countryService.Countries().FindAsync(id);
             if (country == null) return NotFound();
 
             return View(country);
@@ -99,8 +97,8 @@ namespace FriendsMVC.Controllers
 
             try
             {
-                _context.Update(country);
-                await _context.SaveChangesAsync();
+                _countryService.UpdateCountry(country);
+                await _countryService.SaveChangesAsync();
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -116,9 +114,9 @@ namespace FriendsMVC.Controllers
         // GET: Country/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null || _context.Countries == null) return NotFound();
+            if (id == null || _countryService.Countries == null) return NotFound();
 
-            var country = await _context.Countries
+            var country = await _countryService.Countries()
                 .FirstOrDefaultAsync(m => m.CountryID == id);
 
             if (country == null) return NotFound();
@@ -131,19 +129,19 @@ namespace FriendsMVC.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            if (_context.Countries == null) return Problem("Entity set 'ApplicationDbContext.Countries'  is null.");
+            if (_countryService.Countries == null) return Problem("Entity set 'ApplicationDbContext.Countries'  is null.");
 
-            var country = await _context.Countries.FindAsync(id);
+            var country = await _countryService.Countries().FindAsync(id);
 
-            if (country != null) _context.Countries.Remove(country);
+            if (country != null) _countryService.Countries().Remove(country);
 
-            await _context.SaveChangesAsync();
+            await _countryService.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool CountryExists(int id)
         {
-            return _context.Countries.Any(e => e.CountryID == id);
+            return _countryService.Countries().Any(e => e.CountryID == id);
         }
     }
 }
