@@ -4,9 +4,9 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - FriendsMVC</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/FriendsMVC.styles.css" asp-append-version="true" />
+    @*<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />*@
+   @* <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />*@
+  @*  <link rel="stylesheet" href="~/FriendsMVC.styles.css" asp-append-version="true" />*@
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="~/css/owl.carousel.min.css">
 
@@ -15,50 +15,83 @@
 
     <!-- Style -->
     <link rel="stylesheet" href="~/css/style.css">
+    <link rel="stylesheet" href="~/css/styleMain.css">
+
+       <!-- Syncfusion ASP.NET Core controls styles -->
+    <link rel="stylesheet" href="https://cdn.syncfusion.com/ej2/20.4.38/fluent.css" />
+
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
 </head>
 <body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">FriendsMVC</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Домашняя страница</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Правила</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Friend" asp-action="Index">Друзья</a>
-                        </li>
-                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Country" asp-action="Index">Страны</a>
-                        </li
-                    </ul>
-                </div>
-            </div>
-        </nav>
-    </header>
+    <div class="sidebar">
+    <div class="logo-details">
+      <i class='bx bxs-truck icon'></i>
+        <div class="logo_name">Trucking Inc.</div>
+      <i class='bx bx-menu' id="btn" ></i>
+    </div>
+    <ul class="nav-list">
+      <li>
+          <i class='bx bx-search' ></i>
+         <input type="text" placeholder="Search...">
+         <span class="tooltip">Search</span>
+      </li>
+      <li>
+       <a href="/Home">
+          <i class='bx bx-grid-alt'></i>
+          <span class="links_name">Главная</span>
+        </a>
+         <span class="tooltip">Главная</span>
+      </li>
+      <li>
+     <a href="/Home/Privacy">
+         <i class='bx bx-user' ></i>
+         <span class="links_name">Правила</span>
+       </a>
+       <span class="tooltip">Правила</span>
+     </li>
+     <li>
+        <a href="/Friend">
+         <i class='bx bx-chat' ></i>
+         <span class="links_name">Друзья</span>
+       </a>
+       <span class="tooltip">Друзья</span>
+     </li>
+     <li>
+      <a href="/Country">
+         <i class='bx bx-pie-chart-alt-2' ></i>
+         <span class="links_name">Страны</span>
+       </a>
+       <span class="tooltip">Страны</span>
+     </li>
+     <li class="profile">
+         <div class="profile-details">
+           <img src="profile.jpg" alt="profileImg">
+           <div class="name_job">
+             <div class="name">Makar A.A.</div>
+             <div class="job">dotNet Developer</div>
+           </div>
+         </div>
+         <i class='bx bx-log-out' id="log_out" ></i>
+     </li>
+    </ul>
+  </div>
+
+
     <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2022 - FriendsMVC - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
-    </footer>
+
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+     <script src="~/js/scriptMain.js" asp-append-version="true"></script>
     <script src="https://kit.fontawesome.com/721ff418b7.js" crossorigin="anonymous"></script>
+
+    <!-- Syncfusion ASP.NET Core controls scripts -->
+    <script src="https://cdn.syncfusion.com/ej2/20.4.38/dist/ej2.min.js"></script>
 
     @await RenderSectionAsync("Scripts", required: false)
 </body>
